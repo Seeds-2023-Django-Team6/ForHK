@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<article>
+    <a href="{% url 'diary-create' %}"><button>Add new diary</button></a>
+</article>
+
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if diary_list %}
+        {% for diary in diary_list %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><a href="{% url 'diary-detail' diary.id %}">
+                {{diary.title}}
+            </a></td>
+            <td>{{diary.create_date|date:'Y-m-d H:i'}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">No diary.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

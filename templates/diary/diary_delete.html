@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <p>
+        Are you sure you want to delete
+        <em>"{{diary.title}}"</em>
+        created on {{diary.create_date|date:'Y-m-d'}}?
+    </p>
+    <input type="submit" value="Confirm">
+</form>
+<a href="{% url 'diary-detail' diary.id %}">
+    <button>Cancel</button>
+</a>
+<% endblock %>
